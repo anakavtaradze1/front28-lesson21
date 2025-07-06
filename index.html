@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lesson 21</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <section>
+      <div class="container">
+        <form action="#" method="#" id="user-form" novalidate>
+          <div class="form-group">
+            <label for="personal-number">Personal Number</label>
+            <input
+              type="text"
+              id="personal-number"
+              name="personal-number"
+              required
+            />
+            <span class="message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="user-email" required />
+            <span class="message"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="user-password"
+              required
+            />
+            <span class="message"></span>
+          </div>
+
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+    <dialog id="success-dialog">
+      <div class="dialog-content">
+        <h2>Form submitted successfully!</h2>
+        <button class="close">close</button>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>

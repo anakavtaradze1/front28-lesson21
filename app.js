@@ -3,7 +3,7 @@ const personalNumber = form.querySelector("#personal-number");
 const email = form.querySelector("#email");
 const password = form.querySelector("#password");
 const successDialog = document.getElementById("success-dialog");
-const closSuccessDialog = successDialog.querySelector(".close");
+const closeSuccessDialog = successDialog.querySelector(".close");
 
 form.addEventListener("submit", (e) => {
   e.preventDefault();
@@ -20,7 +20,7 @@ form.addEventListener("submit", (e) => {
   }
 });
 
-closSuccessDialog.addEventListener("click", () => {
+closeSuccessDialog.addEventListener("click", () => {
   successDialog.close();
   clearValidation();
 });
@@ -31,6 +31,9 @@ function clearValidation() {
     group.classList.remove("error", "success");
     group.querySelector(".message").textContent = "";
   });
+}
+function isEmpty(input) {
+  return input.validity.valueMissing || input.value.trim() === "";
 }
 
 function setError(element, message) {
@@ -48,7 +51,7 @@ function setSuccess(element, message) {
 
 function validatePersonalNumber() {
   const personalNumberValue = personalNumber.value.trim();
-  if (personalNumberValue.length === 0) {
+  if (isEmpty(personalNumber)) {
     setError(personalNumber, "Personal number is required");
     return false;
   } else if (!/^\d{11}$/.test(personalNumberValue)) {
@@ -62,7 +65,7 @@ function validatePersonalNumber() {
 
 // function validatePersonalNumber() {
 //   const personalNumberValue = personalNumber.value.trim();
-//   if (personalNumberValue.length === 0) {
+//   if (isEmpty(personalNumber)) {
 //     setError(personalNumber, "Personal number is required");
 //     return false;
 //   } else if (personalNumberValue.length !== 11 || isNaN(personalNumberValue)) {
@@ -76,7 +79,7 @@ function validatePersonalNumber() {
 
 function validateEmail() {
   const emailValue = email.value.trim();
-  if (emailValue.length === 0) {
+  if (isEmpty(email)) {
     setError(email, "Email is required");
     return false;
   } else if (!emailValue.endsWith("@gmail.com")) {
@@ -89,10 +92,11 @@ function validateEmail() {
 }
 
 function validatePassword() {
-  if (password.value.length === 0) {
+  const passwordValue = password.value.trim();
+  if (isEmpty(password)) {
     setError(password, "Password is required");
     return false;
-  } else if (password.value.length < 8) {
+  } else if (passwordValue.length < 8) {
     setError(password, "Password must be at least 8 characters long");
     return false;
   } else {
